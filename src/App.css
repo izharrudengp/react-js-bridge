@@ -26,8 +26,7 @@
   height:50px;
 }
 .inputImg {
-  margin-top:20px;
-  margin-bottom:20px;
+  margin: 5px;
   width:200px;
   height:150px;
   max-width: 200px;
@@ -37,12 +36,11 @@
 }
 
 .inputFaceImg {
-  margin-top:20px;
-  margin-bottom:20px;
-  width:80px;
-  height:100px;
-  max-width: 80px;
-  max-height: 100px;
+  width:120px;
+  margin: 5px;
+  height:150px;
+  max-width: 120px;
+  max-height: 150px;
   background-position: center center;
   background-repeat: no-repeat;
 }

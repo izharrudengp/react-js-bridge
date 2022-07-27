@@ -3,47 +3,6 @@
 
 <head>
     <script type="text/javascript">
-        function sendJsToWebView(message) {
-            message = message.replace(/\\/g, "");
-            const obj = JSON.parse(message, function (key, value) {
-
-                if (key == "fullName") {
-                    localStorage.setItem("fullName", value);
-
-                } else if (key == "documentNumber") {
-                    localStorage.setItem("documentNumber", value);
-
-                } else if (key == "ref_id") {
-                    localStorage.setItem("ref_id", value);
-
-                } else if (key == "id_type") {
-                    localStorage.setItem("id_type", value);
-
-                } else if (key == "address") {
-                    localStorage.setItem("address", value);
-
-                } else if (key == "gender") {
-                    localStorage.setItem("gender", value);
-
-                } else if (key == "dateOfBirth") {
-                    localStorage.setItem("dateOfBirth", value);
-
-                } else if (key == "placeOfBirth") {
-                    localStorage.setItem("placeOfBirth", value);
-
-                } else if (key == "frontImg") {
-                    localStorage.setItem("frontImg", value);
-
-                } else if (key == "backImg") {
-                    localStorage.setItem("backImg", value);
-
-                } else if (key == "faceImg") {
-                    localStorage.setItem("faceImg", value);
-
-                }
-            });
-
-        }
 
         var userAgent = window.navigator.userAgent.toLowerCase(),
             safari = /safari/.test(userAgent),
