@@ -19,6 +19,14 @@ function App() {
   const [backImg, setBackImg] = useState(localStorage.getItem("backImg"));
   const [faceImg, setFaceImg] = useState(localStorage.getItem("faceImg"));
 
+  const [handshake_key, setHandshake] = useState(localStorage.getItem("handshake_key"));
+  const [key_exp, setKeyExp] = useState(localStorage.getItem("key_exp"));
+  const [lat, setLat] = useState(localStorage.getItem("lat"));
+  const [long, setLong] = useState(localStorage.getItem("long"));
+  const [device_id, setDeviceId] = useState(localStorage.getItem("device_id"));
+  const [device_model, setDeviceModel] = useState(localStorage.getItem("device_model"));
+  const [ip_address, setIpAddress] = useState(localStorage.getItem("ip_address"));
+
   window.sendJsToWebView = (message: string) => {
     message = message.replace(/\\/g, "");
     const obj = JSON.parse(message, function (key, value) {
@@ -66,6 +74,35 @@ function App() {
       } else if (key === "faceImg") {
         setFaceImg(value);
         localStorage.setItem("faceImg", value);
+
+      } else if (key === "handshake_key") {
+        setHandshake(value);
+        localStorage.setItem("handshake_key", value);
+
+      } else if (key === "key_exp") {
+        setKeyExp(value);
+        localStorage.setItem("key_exp", value);
+
+      } else if (key === "lat") {
+        setLat(value);
+        localStorage.setItem("lat", value);
+
+      } else if (key === "long") {
+        setLong(value);
+        localStorage.setItem("long", value);
+
+      } else if (key === "device_id") {
+        setDeviceId(value);
+        localStorage.setItem("device_id", value);
+
+      } else if (key === "device_model") {
+        setDeviceModel(value);
+        localStorage.setItem("device_model", value);
+
+      } else if (key === "ip_address") {
+        setIpAddress(value);
+        localStorage.setItem("ip_address", value);
+
       }
     });
   }
@@ -109,6 +146,14 @@ function App() {
     }
   };
 
+  function openDeviceDetails() {
+    if (ios) {
+      eval("NativeApp.postMessage({'action': 'openDeviceDetails'});")
+    } else {
+      eval("Android.openDeviceDetails();")
+    }
+  };
+
   function clearData() {
     localStorage.clear();
 
@@ -123,11 +168,19 @@ function App() {
     setFrontImg("");
     setBackImg("");
     setFaceImg("");
+
+    setHandshake("");
+    setKeyExp("");
+    setLat("");
+    setLong("");
+    setDeviceId("");
+    setDeviceModel("");
+    setIpAddress("");
   };
 
   return (
     <div className="container">
-      <h1 className="header">Microsite Maxis</h1>
+      <h1 className="header">Microsite Option</h1>
 
       <table>
         <tr>
@@ -141,15 +194,16 @@ function App() {
               Passport
             </button>
           </td>
-        </tr>
-      </table>
-      <table>
-        <tr>
           <td>
             <button onClick={openTenteraHtml} className="butn button-width" >
               Tentera
             </button>
           </td>
+        </tr>
+      </table>
+      <table>
+        <tr>
+          
           {fullName != null && fullName.length > 0
             ? <td>
               <button onClick={openFaceIDHtml} className="butn button-width" >
@@ -165,13 +219,72 @@ function App() {
       <table>
         <tr>
           <td>
+            <button onClick={openDeviceDetails} className="butn button-width" >
+              Device Details
+            </button>
+          </td>
+          <td>
             <button onClick={clearData} className="butn button-width" >
               Clear Data
             </button>
           </td>
-
         </tr>
       </table>
+
+      <h2 className="label">Device Details</h2>
+
+      <input id="inputFieldHandshake" className="inputKyc" type="text" placeholder="Handshake key" disabled
+        value=
+        {handshake_key != null && handshake_key.length > 0
+          ? handshake_key
+          : ""
+        } />
+
+      <input id="inputFieldKey" className="inputKyc" type="text" placeholder="Key exp" disabled
+        value=
+        {key_exp != null && key_exp.length > 0
+          ? key_exp
+          : ""
+        } />
+
+      <input id="inputFieldLat" className="inputKyc" type="text" placeholder="Lat" disabled
+        value=
+        {lat != null && lat.length > 0
+          ? lat
+          : ""
+        } />
+
+      <input id="inputFieldLong" className="inputKyc" type="text" placeholder="Long" disabled
+        value=
+        {long != null && long.length > 0
+          ? long
+          : ""
+        } />
+
+      <input id="inputFieldDeviceId" className="inputKyc" type="text" placeholder="Device ID" disabled
+        value=
+        {device_id != null && device_id.length > 0
+          ? device_id
+          : ""
+        } />
+
+      <input id="inputFieldDeviceModel" className="inputKyc" type="text" placeholder="Device Model" disabled
+        value=
+        {device_model != null && device_model.length > 0
+          ? device_model
+          : ""
+        } />
+
+      <input id="inputFieldIpAddress" className="inputKyc" type="text" placeholder="Ip Address" disabled
+        value=
+        {ip_address != null && ip_address.length > 0
+          ? ip_address
+          : ""
+        } />
+
+
+
+      <h2 className="label">EKyc Details</h2>
 
       {frontImg != null && frontImg.length > 0
         ? <img id="inputFrontImg" className="inputImg" src={frontImg} height="150" width="200" />
@@ -244,6 +357,7 @@ function App() {
           : ""
         } />
 
+    
     </div>
   );
 }

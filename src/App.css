@@ -56,12 +56,17 @@
   margin-bottom:10px;
   margin-top:10px;
 }
+.label {
+  color:#FFFFFF;
+  font-size:200%;
+  margin-bottom:10px;
+  margin-top:20px;
+}
 .button-width {
-  width:120px;
-  height: 60px;
-  max-width: 120px;
+  height: 40px;
+  width: 100px;
   margin-right:5px;
-  max-height: 60px;
+  max-height: 40px;
 }
 
 .button-width-clear {
