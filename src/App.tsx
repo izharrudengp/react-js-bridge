@@ -70,24 +70,43 @@ function App() {
     });
   }
 
+  var userAgent = window.navigator.userAgent.toLowerCase(),
+    safari = /safari/.test(userAgent),
+    ios = /iphone|ipod|ipad/.test(userAgent);
+
   function openMyKadHtml() {
-    window.location.assign("open-mykad.html");
+    if (ios) {
+      eval("NativeApp.postMessage({'action': 'openEKycNRIC'});")
+    } else {
+      eval("Android.openEKycNRIC();")
+    }
 
   };
 
   function openPassportHtml() {
-    window.location.assign("open-passport.html");
+    if (ios) {
+      eval("NativeApp.postMessage({'action': 'openEKycPassport'});")
+    } else {
+      eval("Android.openEKycPassport();")
+    }
 
   };
 
   function openTenteraHtml() {
-    window.location.assign("open-tentera.html");
+    if (ios) {
+      eval("NativeApp.postMessage({'action': 'openEKycTentera'});")
+    } else {
+      eval("Android.openEKycTentera();")
+    }
 
   };
 
   function openFaceIDHtml() {
-    window.location.assign("open-faceid.html");
-    setFullName("");
+    if (ios) {
+      eval("NativeApp.postMessage({'action': 'openEKycFace'});")
+    } else {
+      eval("Android.openEKycFace();")
+    }
   };
 
   function clearData() {
